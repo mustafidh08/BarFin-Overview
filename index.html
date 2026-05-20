@@ -1,1031 +1,1851 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BarFin — Project Overview</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-/* ── RESET & ROOT ─────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarFin — Project Overview</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── RESET & ROOT ─────────────────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-:root {
-  --emerald:     #059669;
-  --emerald-dk:  #047857;
-  --emerald-xdk: #064e3b;
-  --emerald-lt:  #d1fae5;
-  --mint:        #ecfdf5;
-  --gold-lt:     #fef3c7;
-  --slate:       #0f172a;
-  --slate-md:    #334155;
-  --slate-lt:    #64748b;
-  --slate-xlt:   #e2e8f0;
-  --white:       #ffffff;
-  --off:         #f8faf9;
-  --pad-x: clamp(16px, 5vw, 40px);
-  --section-py: clamp(48px, 8vw, 72px);
-  --max-w: 1000px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--off);
-  color: var(--slate);
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+    :root {
+      --emerald: #059669;
+      --emerald-dk: #047857;
+      --emerald-xdk: #064e3b;
+      --emerald-lt: #d1fae5;
+      --mint: #ecfdf5;
+      --gold-lt: #fef3c7;
+      --slate: #0f172a;
+      --slate-md: #334155;
+      --slate-lt: #64748b;
+      --slate-xlt: #e2e8f0;
+      --white: #ffffff;
+      --off: #f8faf9;
+      --pad-x: clamp(16px, 5vw, 40px);
+      --section-py: clamp(48px, 8vw, 72px);
+      --max-w: 1000px;
+    }
 
-/* ── NAVBAR ──────────────────────────────────────────────────────────────── */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(248,250,249,.95);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--slate-xlt);
-  padding: 0 var(--pad-x);
-  display: flex; align-items: center; justify-content: space-between;
-  height: 56px;
-}
-.nav-brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem; color: var(--emerald-dk);
-  letter-spacing: -.02em; z-index: 201;
-}
-.nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
-.nav-links a {
-  font-size: .85rem; font-weight: 500; color: var(--slate-lt);
-  text-decoration: none; letter-spacing: .01em; transition: color .2s;
-}
-.nav-links a:hover { color: var(--emerald); }
-.nav-cta {
-  background: var(--emerald); color: var(--white) !important;
-  padding: 7px 16px; border-radius: 7px;
-  transition: background .2s !important; white-space: nowrap;
-}
-.nav-cta:hover { background: var(--emerald-dk) !important; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off);
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  cursor: pointer; padding: 4px; z-index: 201;
-  background: none; border: none;
-}
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--slate); border-radius: 2px;
-  transition: all .3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── NAVBAR ──────────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(248, 250, 249, .95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--slate-xlt);
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
 
-.nav-drawer {
-  display: none; position: fixed;
-  inset: 56px 0 0 0; z-index: 199;
-  background: rgba(248,250,249,.98);
-  padding: 24px var(--pad-x) 32px;
-  flex-direction: column;
-  border-top: 1px solid var(--slate-xlt);
-  overflow-y: auto;
-}
-.nav-drawer.open { display: flex; }
-.nav-drawer li { list-style: none; }
-.nav-drawer a {
-  display: block; padding: 14px 0;
-  font-size: 1.05rem; font-weight: 500;
-  color: var(--slate); text-decoration: none;
-  border-bottom: 1px solid var(--slate-xlt);
-  transition: color .2s;
-}
-.nav-drawer a:hover { color: var(--emerald); }
-.nav-drawer .drawer-cta {
-  margin-top: 20px; display: block; text-align: center;
-  background: var(--emerald); color: var(--white) !important;
-  padding: 14px; border-radius: 10px;
-  font-size: 1rem; font-weight: 600; border-bottom: none;
-  text-decoration: none;
-}
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--emerald-dk);
+      letter-spacing: -.02em;
+      z-index: 201;
+    }
 
-/* ── HERO ────────────────────────────────────────────────────────────────── */
-.hero {
-  background: linear-gradient(135deg, var(--emerald-xdk) 0%, var(--emerald-dk) 55%, #065f46 100%);
-  padding: clamp(56px, 10vw, 100px) var(--pad-x) clamp(48px, 8vw, 80px);
-  text-align: center; position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-}
-.hero > * { position: relative; }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      align-items: center;
+    }
 
-.hero-tag {
-  display: inline-block;
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-  color: #6ee7b7; font-size: .74rem; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; padding: 5px 14px; border-radius: 100px;
-  margin-bottom: clamp(16px, 3vw, 24px);
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 7vw, 5.5rem);
-  color: var(--white); line-height: 1.1; letter-spacing: -.025em;
-  margin-bottom: clamp(12px, 2.5vw, 20px);
-}
-.hero h1 span { color: #6ee7b7; }
-.hero-sub {
-  font-size: clamp(.88rem, 2vw, 1.1rem); color: rgba(255,255,255,.75);
-  max-width: 560px; margin: 0 auto clamp(24px, 5vw, 40px);
-  font-weight: 300;
-}
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--slate-lt);
+      text-decoration: none;
+      letter-spacing: .01em;
+      transition: color .2s;
+    }
 
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 14px; max-width: 580px; margin: 0 auto clamp(24px, 5vw, 40px);
-  overflow: hidden;
-}
-.stat-item {
-  padding: clamp(12px, 3vw, 20px) 8px;
-  border-right: 1px solid rgba(255,255,255,.1);
-}
-.stat-item:last-child { border-right: none; }
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 4vw, 2rem); color: #6ee7b7;
-  line-height: 1; margin-bottom: 4px;
-}
-.stat-lbl {
-  font-size: clamp(.58rem, 1.4vw, .72rem); color: rgba(255,255,255,.55);
-  letter-spacing: .04em; text-transform: uppercase; line-height: 1.3;
-}
+    .nav-links a:hover {
+      color: var(--emerald);
+    }
 
-.hero-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--white); color: var(--emerald-dk);
-  font-weight: 600; font-size: clamp(.83rem, 2vw, .95rem);
-  padding: clamp(11px, 2vw, 14px) clamp(18px, 4vw, 32px);
-  border-radius: 10px; text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 4px 24px rgba(0,0,0,.25);
-}
-.hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.35); }
-.hero-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .nav-cta {
+      background: var(--emerald);
+      color: var(--white) !important;
+      padding: 7px 16px;
+      border-radius: 7px;
+      transition: background .2s !important;
+      white-space: nowrap;
+    }
 
-/* ── SHARED SECTION ──────────────────────────────────────────────────────── */
-.sec { padding: var(--section-py) var(--pad-x); max-width: var(--max-w); margin: 0 auto; }
-.sec-alt { background: var(--white); }
-.sec-alt > .inner { max-width: var(--max-w); margin: 0 auto; padding: var(--section-py) var(--pad-x); }
+    .nav-cta:hover {
+      background: var(--emerald-dk) !important;
+    }
 
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--emerald); margin-bottom: 10px;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2.4rem); color: var(--slate);
-  line-height: 1.2; margin-bottom: 12px; letter-spacing: -.02em;
-}
-.section-lead {
-  font-size: clamp(.87rem, 2vw, 1rem); color: var(--slate-lt);
-  max-width: 600px; margin-bottom: clamp(24px, 5vw, 44px);
-  font-weight: 300; line-height: 1.7;
-}
-.divider {
-  width: 48px; height: 3px;
-  background: linear-gradient(90deg, var(--emerald), var(--emerald-lt));
-  border-radius: 4px; margin-bottom: 14px;
-}
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 201;
+      background: none;
+      border: none;
+    }
 
-/* ── PROBLEMS ────────────────────────────────────────────────────────────── */
-.problems-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.problem-card {
-  background: var(--off); border: 1px solid var(--slate-xlt);
-  border-radius: 14px; padding: clamp(16px, 3vw, 28px);
-  transition: border-color .2s, box-shadow .2s;
-}
-.problem-card:hover { border-color: var(--emerald-lt); box-shadow: 0 4px 20px rgba(5,150,105,.08); }
-.problem-icon { font-size: 1.7rem; margin-bottom: 12px; display: block; }
-.problem-card h3 { font-size: clamp(.88rem, 2vw, 1rem); font-weight: 600; color: var(--slate); margin-bottom: 8px; }
-.problem-card p { font-size: clamp(.8rem, 1.8vw, .9rem); color: var(--slate-lt); line-height: 1.6; }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--slate);
+      border-radius: 2px;
+      transition: all .3s;
+    }
 
-.solution-box {
-  margin-top: clamp(22px, 4vw, 40px);
-  background: linear-gradient(135deg, var(--emerald-xdk), var(--emerald-dk));
-  border-radius: 16px; padding: clamp(22px, 4vw, 36px) clamp(18px, 4vw, 40px);
-  color: var(--white); display: grid; grid-template-columns: 1fr auto;
-  gap: 24px; align-items: center;
-}
-.solution-box h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.05rem, 3vw, 1.4rem); margin-bottom: 10px; color: var(--white);
-}
-.solution-box p { font-size: clamp(.83rem, 1.8vw, .93rem); color: rgba(255,255,255,.8); font-weight: 300; line-height: 1.7; }
-.solution-badge {
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-  border-radius: 10px; padding: 16px 20px; text-align: center; white-space: nowrap; flex-shrink: 0;
-}
-.solution-badge .badge-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: #6ee7b7; display: block; line-height: 1; }
-.solution-badge .badge-lbl { font-size: .7rem; color: rgba(255,255,255,.6); letter-spacing: .06em; text-transform: uppercase; line-height: 1.4; margin-top: 4px; display: block; }
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
 
-/* ── FEATURES ────────────────────────────────────────────────────────────── */
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.feat-card {
-  background: var(--white); border: 1px solid var(--slate-xlt);
-  border-radius: 14px; padding: clamp(16px, 3vw, 26px);
-  transition: all .25s; position: relative; overflow: hidden;
-}
-.feat-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--emerald), var(--emerald-lt));
-  opacity: 0; transition: opacity .25s;
-}
-.feat-card:hover { border-color: var(--emerald-lt); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(5,150,105,.1); }
-.feat-card:hover::before { opacity: 1; }
-.feat-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
-.feat-card h3 { font-size: clamp(.86rem, 2vw, .98rem); font-weight: 600; color: var(--slate); margin-bottom: 8px; }
-.feat-card p { font-size: clamp(.79rem, 1.6vw, .87rem); color: var(--slate-lt); line-height: 1.65; }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
 
-/* ── STEPS ───────────────────────────────────────────────────────────────── */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-.steps::before {
-  content: ''; position: absolute; top: 24px; left: calc(12.5%); right: calc(12.5%);
-  height: 2px; background: var(--emerald-lt); z-index: 0;
-}
-.step { text-align: center; padding: 0 10px; position: relative; z-index: 1; }
-.step-num {
-  width: 48px; height: 48px; background: var(--emerald); color: var(--white);
-  border-radius: 50%; font-family: 'Playfair Display', serif; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px; box-shadow: 0 0 0 6px var(--white), 0 0 0 7px var(--emerald-lt);
-}
-.step h3 { font-size: clamp(.85rem, 2vw, .95rem); font-weight: 600; color: var(--slate); margin-bottom: 8px; }
-.step p { font-size: clamp(.78rem, 1.6vw, .85rem); color: var(--slate-lt); }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
-/* ── INVESTMENT ──────────────────────────────────────────────────────────── */
-.inv-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-.inv-desc p { font-size: clamp(.84rem, 1.8vw, .93rem); color: var(--slate-lt); margin-bottom: 14px; line-height: 1.7; }
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 56px 0 0 0;
+      z-index: 199;
+      background: rgba(248, 250, 249, .98);
+      padding: 24px var(--pad-x) 32px;
+      flex-direction: column;
+      border-top: 1px solid var(--slate-xlt);
+      overflow-y: auto;
+    }
 
-.scenario-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
-.scenario-table {
-  width: 100%; min-width: 300px; border-collapse: separate;
-  border-spacing: 0; border-radius: 12px; overflow: hidden;
-  border: 1px solid var(--slate-xlt);
-}
-.scenario-table thead tr { background: var(--emerald-dk); }
-.scenario-table th {
-  color: var(--white); font-size: clamp(.7rem, 1.5vw, .8rem);
-  font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
-  padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 16px); text-align: left;
-}
-.scenario-table td {
-  padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 16px);
-  font-size: clamp(.77rem, 1.6vw, .88rem); color: var(--slate-md);
-  border-bottom: 1px solid var(--slate-xlt);
-}
-.scenario-table tr:last-child td { border-bottom: none; }
-.scenario-table tr:nth-child(even) td { background: var(--off); }
+    .nav-drawer.open {
+      display: flex;
+    }
 
-.badge-pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: .73rem; font-weight: 600; white-space: nowrap; }
-.pill-green { background: var(--emerald-lt); color: var(--emerald-dk); }
-.pill-yellow { background: #fef9c3; color: #92400e; }
-.pill-red { background: #fee2e2; color: #991b1b; }
+    .nav-drawer li {
+      list-style: none;
+    }
 
-.dyor-box {
-  margin-top: 18px; background: var(--gold-lt); border: 1px solid #fcd34d;
-  border-radius: 10px; padding: clamp(12px, 2.5vw, 16px) clamp(12px, 3vw, 20px);
-  font-size: clamp(.77rem, 1.6vw, .83rem); color: #78350f; line-height: 1.65;
-}
-.dyor-box strong { color: #92400e; }
+    .nav-drawer a {
+      display: block;
+      padding: 14px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      border-bottom: 1px solid var(--slate-xlt);
+      transition: color .2s;
+    }
 
-/* ── SECURITY ────────────────────────────────────────────────────────────── */
-.security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.sec-card {
-  background: var(--off); border: 1px solid var(--slate-xlt);
-  border-radius: 12px; padding: clamp(14px, 3vw, 24px);
-  display: flex; gap: 14px; transition: all .2s;
-}
-.sec-card:hover { border-color: var(--emerald-lt); }
-.sec-icon { font-size: 1.35rem; flex-shrink: 0; margin-top: 2px; }
-.sec-card h3 { font-size: clamp(.87rem, 2vw, .95rem); font-weight: 600; color: var(--slate); margin-bottom: 6px; }
-.sec-card p { font-size: clamp(.79rem, 1.6vw, .87rem); color: var(--slate-lt); line-height: 1.6; }
+    .nav-drawer a:hover {
+      color: var(--emerald);
+    }
 
-/* ── ROADMAP ─────────────────────────────────────────────────────────────── */
-.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.phase-card { border-radius: 14px; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--slate-xlt); }
-.phase-card.done { background: var(--mint); border-color: var(--emerald-lt); }
-.phase-card.next { background: var(--off); }
-.phase-card.future { background: var(--off); border-style: dashed; }
-.phase-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: .72rem; font-weight: 600; padding: 4px 10px;
-  border-radius: 100px; margin-bottom: 12px;
-}
-.badge-done { background: var(--emerald-lt); color: var(--emerald-dk); }
-.badge-next { background: #dbeafe; color: #1e40af; }
-.badge-future { background: #f3e8ff; color: #6b21a8; }
-.phase-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(.92rem, 2vw, 1.05rem); color: var(--slate); margin-bottom: 12px; }
-.phase-card ul { list-style: none; }
-.phase-card li {
-  font-size: clamp(.79rem, 1.6vw, .86rem); color: var(--slate-lt);
-  padding: 4px 0; display: flex; gap: 8px; align-items: flex-start;
-}
-.phase-card li::before { content: '·'; color: var(--emerald); font-weight: 700; flex-shrink: 0; }
+    .nav-drawer .drawer-cta {
+      margin-top: 20px;
+      display: block;
+      text-align: center;
+      background: var(--emerald);
+      color: var(--white) !important;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-bottom: none;
+      text-decoration: none;
+    }
 
-/* ── PROGRESS ────────────────────────────────────────────────────────────── */
-.progress-section { background: var(--slate); padding: var(--section-py) var(--pad-x); }
-.progress-inner { max-width: var(--max-w); margin: 0 auto; }
-.progress-section .section-label { color: #6ee7b7; }
-.progress-section .section-title { color: var(--white); }
-.progress-section .section-lead  { color: rgba(255,255,255,.55); }
-.progress-section .divider { background: linear-gradient(90deg, #6ee7b7, var(--emerald)); }
+    /* ── HERO ────────────────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--emerald-xdk) 0%, var(--emerald-dk) 55%, #065f46 100%);
+      padding: clamp(56px, 10vw, 100px) var(--pad-x) clamp(48px, 8vw, 80px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-.progress-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
-}
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+    }
 
-.donut-card {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 20px;
-  padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px);
-  text-align: center;
-  transition: background .25s, transform .25s;
-  position: relative;
-  overflow: hidden;
-}
-.donut-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(110,231,183,.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-.donut-card:hover {
-  background: rgba(255,255,255,.08);
-  transform: translateY(-4px);
-}
+    .hero>* {
+      position: relative;
+    }
 
-.donut-wrap {
-  position: relative;
-  width: 130px; height: 130px;
-  margin: 0 auto 20px;
-}
-.donut-wrap svg { width: 130px; height: 130px; transform: rotate(-90deg); }
-.donut-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 12; }
-.donut-fill  { fill: none; stroke-width: 12; stroke-linecap: round;
-  transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1); }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: #6ee7b7;
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: clamp(16px, 3vw, 24px);
+    }
 
-.donut-center {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-}
-.donut-pct {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.65rem; line-height: 1;
-  color: var(--white); font-weight: 700;
-}
-.donut-pct-sym { font-size: 1rem; opacity: .7; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 7vw, 5.5rem);
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      margin-bottom: clamp(12px, 2.5vw, 20px);
+    }
 
-.donut-card h3 {
-  font-size: clamp(.88rem, 2vw, 1rem);
-  font-weight: 600; color: var(--white);
-  margin-bottom: 8px;
-}
-.donut-card p {
-  font-size: clamp(.76rem, 1.6vw, .84rem);
-  color: rgba(255,255,255,.45);
-  line-height: 1.6;
-}
-.donut-tasks {
-  margin-top: 14px;
-  display: flex; flex-wrap: wrap; gap: 6px;
-  justify-content: center;
-}
-.task-chip {
-  font-size: .68rem; font-weight: 600;
-  padding: 3px 9px; border-radius: 100px;
-  letter-spacing: .02em;
-}
-.chip-done   { background: rgba(110,231,183,.15); color: #6ee7b7; border: 1px solid rgba(110,231,183,.3); }
-.chip-wip    { background: rgba(96,165,250,.15);  color: #93c5fd; border: 1px solid rgba(96,165,250,.3); }
-.chip-todo   { background: rgba(255,255,255,.06); color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.12); }
+    .hero h1 span {
+      color: #6ee7b7;
+    }
 
-/* Overall bar */
-.overall-progress {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 20px;
-  padding: clamp(22px, 4vw, 36px) clamp(20px, 4vw, 40px);
-}
-.overall-progress h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--white); margin-bottom: 6px;
-}
-.overall-progress > p {
-  font-size: clamp(.8rem, 1.8vw, .9rem);
-  color: rgba(255,255,255,.4); margin-bottom: 24px;
-}
-.progress-bar-label {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 8px;
-}
-.progress-bar-label span:first-child {
-  font-size: .82rem; color: rgba(255,255,255,.65); font-weight: 500;
-}
-.progress-bar-label span:last-child {
-  font-family: 'DM Mono', monospace;
-  font-size: .78rem; color: #6ee7b7; font-weight: 500;
-}
-.bar-track {
-  height: 10px; background: rgba(255,255,255,.08);
-  border-radius: 100px; overflow: hidden; margin-bottom: 16px;
-}
-.bar-fill {
-  height: 100%; border-radius: 100px;
-  transition: width 1.4s cubic-bezier(.4,0,.2,1);
-  width: 0;
-}
+    .hero-sub {
+      font-size: clamp(.88rem, 2vw, 1.1rem);
+      color: rgba(255, 255, 255, .75);
+      max-width: 560px;
+      margin: 0 auto clamp(24px, 5vw, 40px);
+      font-weight: 300;
+    }
 
-.overall-legend {
-  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;
-}
-.legend-item {
-  display: flex; align-items: center; gap: 7px;
-  font-size: .78rem; color: rgba(255,255,255,.5);
-}
-.legend-dot {
-  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-}
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 14px;
+      max-width: 580px;
+      margin: 0 auto clamp(24px, 5vw, 40px);
+      overflow: hidden;
+    }
 
-@media (max-width: 768px) {
-  .progress-grid { grid-template-columns: 1fr; gap: 16px; }
-}
-@media (max-width: 480px) {
-  .progress-grid { grid-template-columns: 1fr; }
-}
+    .stat-item {
+      padding: clamp(12px, 3vw, 20px) 8px;
+      border-right: 1px solid rgba(255, 255, 255, .1);
+    }
 
-/* ── CTA ─────────────────────────────────────────────────────────────────── */
-.cta-section {
-  background: linear-gradient(135deg, var(--emerald-xdk), var(--emerald-dk));
-  padding: var(--section-py) var(--pad-x); text-align: center;
-}
-.cta-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 5vw, 2.8rem); color: var(--white);
-  margin-bottom: 14px; letter-spacing: -.02em;
-}
-.cta-section > p {
-  color: rgba(255,255,255,.7); font-weight: 300; font-size: clamp(.87rem, 2vw, 1rem);
-  max-width: 480px; margin: 0 auto 32px;
-}
-.cta-link-box {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: var(--white); border-radius: 12px;
-  padding: clamp(12px, 2.5vw, 16px) clamp(18px, 4vw, 32px);
-  margin-bottom: 14px; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(0,0,0,.3);
-  transition: transform .2s, box-shadow .2s;
-  max-width: calc(100% - 0px);
-}
-.cta-link-box:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(0,0,0,.4); }
-.cta-link-icon { font-size: 1.15rem; flex-shrink: 0; }
-.cta-link-text { text-align: left; min-width: 0; }
-.cta-link-text span:first-child { display: block; font-size: .7rem; color: var(--slate-lt); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
-.cta-link-text span:last-child { display: block; font-family: 'DM Mono', monospace; font-size: clamp(.8rem, 2vw, .95rem); color: var(--emerald-dk); font-weight: 500; }
-.cta-note { font-size: .79rem; color: rgba(255,255,255,.4); }
+    .stat-item:last-child {
+      border-right: none;
+    }
 
-/* ── FOOTER ──────────────────────────────────────────────────────────────── */
-footer {
-  background: var(--slate); padding: 24px var(--pad-x);
-  text-align: center; font-size: clamp(.75rem, 1.5vw, .82rem);
-  color: rgba(255,255,255,.35); line-height: 1.7;
-}
-footer strong { color: rgba(255,255,255,.6); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      color: #6ee7b7;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
 
-/* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero > * { animation: fadeUp .65s ease both; }
-.hero .hero-tag   { animation-delay: .1s; }
-.hero h1          { animation-delay: .2s; }
-.hero .hero-sub   { animation-delay: .3s; }
-.hero .hero-stats { animation-delay: .42s; }
-.hero .hero-btn   { animation-delay: .54s; }
+    .stat-lbl {
+      font-size: clamp(.58rem, 1.4vw, .72rem);
+      color: rgba(255, 255, 255, .55);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
 
-/* ══════════════════════════════════════════════════════
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--emerald-dk);
+      font-weight: 600;
+      font-size: clamp(.83rem, 2vw, .95rem);
+      padding: clamp(11px, 2vw, 14px) clamp(18px, 4vw, 32px);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .25);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .35);
+    }
+
+    .hero-btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ── SHARED SECTION ──────────────────────────────────────────────────────── */
+    .sec {
+      padding: var(--section-py) var(--pad-x);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .sec-alt {
+      background: var(--white);
+    }
+
+    .sec-alt>.inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--section-py) var(--pad-x);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      color: var(--slate);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -.02em;
+    }
+
+    .section-lead {
+      font-size: clamp(.87rem, 2vw, 1rem);
+      color: var(--slate-lt);
+      max-width: 600px;
+      margin-bottom: clamp(24px, 5vw, 44px);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--emerald), var(--emerald-lt));
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    /* ── PROBLEMS ────────────────────────────────────────────────────────────── */
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .problem-card {
+      background: var(--off);
+      border: 1px solid var(--slate-xlt);
+      border-radius: 14px;
+      padding: clamp(16px, 3vw, 28px);
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .problem-card:hover {
+      border-color: var(--emerald-lt);
+      box-shadow: 0 4px 20px rgba(5, 150, 105, .08);
+    }
+
+    .problem-icon {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .problem-card h3 {
+      font-size: clamp(.88rem, 2vw, 1rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: clamp(.8rem, 1.8vw, .9rem);
+      color: var(--slate-lt);
+      line-height: 1.6;
+    }
+
+    .solution-box {
+      margin-top: clamp(22px, 4vw, 40px);
+      background: linear-gradient(135deg, var(--emerald-xdk), var(--emerald-dk));
+      border-radius: 16px;
+      padding: clamp(22px, 4vw, 36px) clamp(18px, 4vw, 40px);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .solution-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.05rem, 3vw, 1.4rem);
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .solution-box p {
+      font-size: clamp(.83rem, 1.8vw, .93rem);
+      color: rgba(255, 255, 255, .8);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .solution-badge {
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-align: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .solution-badge .badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #6ee7b7;
+      display: block;
+      line-height: 1;
+    }
+
+    .solution-badge .badge-lbl {
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── FEATURES ────────────────────────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feat-card {
+      background: var(--white);
+      border: 1px solid var(--slate-xlt);
+      border-radius: 14px;
+      padding: clamp(16px, 3vw, 26px);
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--emerald), var(--emerald-lt));
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .feat-card:hover {
+      border-color: var(--emerald-lt);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(5, 150, 105, .1);
+    }
+
+    .feat-card:hover::before {
+      opacity: 1;
+    }
+
+    .feat-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .feat-card h3 {
+      font-size: clamp(.86rem, 2vw, .98rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+
+    .feat-card p {
+      font-size: clamp(.79rem, 1.6vw, .87rem);
+      color: var(--slate-lt);
+      line-height: 1.65;
+    }
+
+    /* ── STEPS ───────────────────────────────────────────────────────────────── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: calc(12.5%);
+      right: calc(12.5%);
+      height: 2px;
+      background: var(--emerald-lt);
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background: var(--emerald);
+      color: var(--white);
+      border-radius: 50%;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 0 6px var(--white), 0 0 0 7px var(--emerald-lt);
+    }
+
+    .step h3 {
+      font-size: clamp(.85rem, 2vw, .95rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: clamp(.78rem, 1.6vw, .85rem);
+      color: var(--slate-lt);
+    }
+
+    /* ── INVESTMENT ──────────────────────────────────────────────────────────── */
+    .inv-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .inv-desc p {
+      font-size: clamp(.84rem, 1.8vw, .93rem);
+      color: var(--slate-lt);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .scenario-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+    }
+
+    .scenario-table {
+      width: 100%;
+      min-width: 300px;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--slate-xlt);
+    }
+
+    .scenario-table thead tr {
+      background: var(--emerald-dk);
+    }
+
+    .scenario-table th {
+      color: var(--white);
+      font-size: clamp(.7rem, 1.5vw, .8rem);
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 16px);
+      text-align: left;
+    }
+
+    .scenario-table td {
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 16px);
+      font-size: clamp(.77rem, 1.6vw, .88rem);
+      color: var(--slate-md);
+      border-bottom: 1px solid var(--slate-xlt);
+    }
+
+    .scenario-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .scenario-table tr:nth-child(even) td {
+      background: var(--off);
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: .73rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .pill-green {
+      background: var(--emerald-lt);
+      color: var(--emerald-dk);
+    }
+
+    .pill-yellow {
+      background: #fef9c3;
+      color: #92400e;
+    }
+
+    .pill-red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .dyor-box {
+      margin-top: 18px;
+      background: var(--gold-lt);
+      border: 1px solid #fcd34d;
+      border-radius: 10px;
+      padding: clamp(12px, 2.5vw, 16px) clamp(12px, 3vw, 20px);
+      font-size: clamp(.77rem, 1.6vw, .83rem);
+      color: #78350f;
+      line-height: 1.65;
+    }
+
+    .dyor-box strong {
+      color: #92400e;
+    }
+
+    /* ── SECURITY ────────────────────────────────────────────────────────────── */
+    .security-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .sec-card {
+      background: var(--off);
+      border: 1px solid var(--slate-xlt);
+      border-radius: 12px;
+      padding: clamp(14px, 3vw, 24px);
+      display: flex;
+      gap: 14px;
+      transition: all .2s;
+    }
+
+    .sec-card:hover {
+      border-color: var(--emerald-lt);
+    }
+
+    .sec-icon {
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .sec-card h3 {
+      font-size: clamp(.87rem, 2vw, .95rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+
+    .sec-card p {
+      font-size: clamp(.79rem, 1.6vw, .87rem);
+      color: var(--slate-lt);
+      line-height: 1.6;
+    }
+
+    /* ── ROADMAP ─────────────────────────────────────────────────────────────── */
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .phase-card {
+      border-radius: 14px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--slate-xlt);
+    }
+
+    .phase-card.done {
+      background: var(--mint);
+      border-color: var(--emerald-lt);
+    }
+
+    .phase-card.next {
+      background: var(--off);
+    }
+
+    .phase-card.future {
+      background: var(--off);
+      border-style: dashed;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .badge-done {
+      background: var(--emerald-lt);
+      color: var(--emerald-dk);
+    }
+
+    .badge-next {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-future {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    .phase-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(.92rem, 2vw, 1.05rem);
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+
+    .phase-card ul {
+      list-style: none;
+    }
+
+    .phase-card li {
+      font-size: clamp(.79rem, 1.6vw, .86rem);
+      color: var(--slate-lt);
+      padding: 4px 0;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .phase-card li::before {
+      content: '·';
+      color: var(--emerald);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── PROGRESS ────────────────────────────────────────────────────────────── */
+    .progress-section {
+      background: var(--slate);
+      padding: var(--section-py) var(--pad-x);
+    }
+
+    .progress-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .progress-section .section-label {
+      color: #6ee7b7;
+    }
+
+    .progress-section .section-title {
+      color: var(--white);
+    }
+
+    .progress-section .section-lead {
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .progress-section .divider {
+      background: linear-gradient(90deg, #6ee7b7, var(--emerald));
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .donut-card {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 20px;
+      padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px);
+      text-align: center;
+      transition: background .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donut-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(110, 231, 183, .06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .donut-card:hover {
+      background: rgba(255, 255, 255, .08);
+      transform: translateY(-4px);
+    }
+
+    .donut-wrap {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 20px;
+    }
+
+    .donut-wrap svg {
+      width: 130px;
+      height: 130px;
+      transform: rotate(-90deg);
+    }
+
+    .donut-track {
+      fill: none;
+      stroke: rgba(255, 255, 255, .08);
+      stroke-width: 12;
+    }
+
+    .donut-fill {
+      fill: none;
+      stroke-width: 12;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.4s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .donut-pct {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      line-height: 1;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .donut-pct-sym {
+      font-size: 1rem;
+      opacity: .7;
+    }
+
+    .donut-card h3 {
+      font-size: clamp(.88rem, 2vw, 1rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .donut-card p {
+      font-size: clamp(.76rem, 1.6vw, .84rem);
+      color: rgba(255, 255, 255, .45);
+      line-height: 1.6;
+    }
+
+    .donut-tasks {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .task-chip {
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 100px;
+      letter-spacing: .02em;
+    }
+
+    .chip-done {
+      background: rgba(110, 231, 183, .15);
+      color: #6ee7b7;
+      border: 1px solid rgba(110, 231, 183, .3);
+    }
+
+    .chip-wip {
+      background: rgba(96, 165, 250, .15);
+      color: #93c5fd;
+      border: 1px solid rgba(96, 165, 250, .3);
+    }
+
+    .chip-todo {
+      background: rgba(255, 255, 255, .06);
+      color: rgba(255, 255, 255, .4);
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    /* Overall bar */
+    .overall-progress {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 20px;
+      padding: clamp(22px, 4vw, 36px) clamp(20px, 4vw, 40px);
+    }
+
+    .overall-progress h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .overall-progress>p {
+      font-size: clamp(.8rem, 1.8vw, .9rem);
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-label span:first-child {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .65);
+      font-weight: 500;
+    }
+
+    .progress-bar-label span:last-child {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      color: #6ee7b7;
+      font-weight: 500;
+    }
+
+    .bar-track {
+      height: 10px;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      transition: width 1.4s cubic-bezier(.4, 0, .2, 1);
+      width: 0;
+    }
+
+    .overall-legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .progress-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .progress-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── CTA ─────────────────────────────────────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--emerald-xdk), var(--emerald-dk));
+      padding: var(--section-py) var(--pad-x);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5vw, 2.8rem);
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: -.02em;
+    }
+
+    .cta-section>p {
+      color: rgba(255, 255, 255, .7);
+      font-weight: 300;
+      font-size: clamp(.87rem, 2vw, 1rem);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-link-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: clamp(12px, 2.5vw, 16px) clamp(18px, 4vw, 32px);
+      margin-bottom: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .3);
+      transition: transform .2s, box-shadow .2s;
+      max-width: calc(100% - 0px);
+    }
+
+    .cta-link-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(0, 0, 0, .4);
+    }
+
+    .cta-link-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .cta-link-text {
+      text-align: left;
+      min-width: 0;
+    }
+
+    .cta-link-text span:first-child {
+      display: block;
+      font-size: .7rem;
+      color: var(--slate-lt);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .cta-link-text span:last-child {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(.8rem, 2vw, .95rem);
+      color: var(--emerald-dk);
+      font-weight: 500;
+    }
+
+    .cta-note {
+      font-size: .79rem;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--slate);
+      padding: 24px var(--pad-x);
+      text-align: center;
+      font-size: clamp(.75rem, 1.5vw, .82rem);
+      color: rgba(255, 255, 255, .35);
+      line-height: 1.7;
+    }
+
+    footer strong {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero>* {
+      animation: fadeUp .65s ease both;
+    }
+
+    .hero .hero-tag {
+      animation-delay: .1s;
+    }
+
+    .hero h1 {
+      animation-delay: .2s;
+    }
+
+    .hero .hero-sub {
+      animation-delay: .3s;
+    }
+
+    .hero .hero-stats {
+      animation-delay: .42s;
+    }
+
+    .hero .hero-btn {
+      animation-delay: .54s;
+    }
+
+    /* ══════════════════════════════════════════════════════
    TABLET  481px – 768px
 ══════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  /* Nav: hide links, show hamburger */
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
+    @media (max-width: 768px) {
 
-  /* Hero stats: 2×2 grid */
-  .hero-stats { grid-template-columns: repeat(2, 1fr); max-width: 360px; }
-  .stat-item:nth-child(2) { border-right: none; }
-  .stat-item:nth-child(3),
-  .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
-  .stat-item:nth-child(4) { border-right: none; }
+      /* Nav: hide links, show hamburger */
+      .nav-links {
+        display: none;
+      }
 
-  /* Features: 2 cols */
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .hamburger {
+        display: flex;
+      }
 
-  /* Steps: 2×2, no connector line */
-  .steps { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-  .steps::before { display: none; }
+      /* Hero stats: 2×2 grid */
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 360px;
+      }
 
-  /* Investment: stack */
-  .inv-layout { grid-template-columns: 1fr; gap: 24px; }
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
 
-  /* Roadmap: 1 col */
-  .roadmap { grid-template-columns: 1fr; }
-}
+      .stat-item:nth-child(3),
+      .stat-item:nth-child(4) {
+        border-top: 1px solid rgba(255, 255, 255, .1);
+      }
 
-/* ══════════════════════════════════════════════════════
+      .stat-item:nth-child(4) {
+        border-right: none;
+      }
+
+      /* Features: 2 cols */
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Steps: 2×2, no connector line */
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+
+      .steps::before {
+        display: none;
+      }
+
+      /* Investment: stack */
+      .inv-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      /* Roadmap: 1 col */
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════
    MOBILE  ≤ 480px
 ══════════════════════════════════════════════════════ */
-@media (max-width: 480px) {
-  /* Problems: 1 col */
-  .problems-grid { grid-template-columns: 1fr; gap: 12px; }
+    @media (max-width: 480px) {
 
-  /* Solution box: 1 col, hide badge */
-  .solution-box { grid-template-columns: 1fr; }
-  .solution-badge { display: none; }
+      /* Problems: 1 col */
+      .problems-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
 
-  /* Features: 1 col */
-  .features-grid { grid-template-columns: 1fr; gap: 12px; }
+      /* Solution box: 1 col, hide badge */
+      .solution-box {
+        grid-template-columns: 1fr;
+      }
 
-  /* Steps: vertical list, left-aligned */
-  .steps { grid-template-columns: 1fr; gap: 18px; }
-  .step {
-    text-align: left; display: flex; gap: 16px;
-    align-items: flex-start; padding: 0;
-  }
-  .step-num {
-    margin: 0; flex-shrink: 0;
-    width: 40px; height: 40px; font-size: 1rem;
-    box-shadow: 0 0 0 4px var(--white), 0 0 0 5px var(--emerald-lt);
-  }
-  .step .step-content { min-width: 0; }
+      .solution-badge {
+        display: none;
+      }
 
-  /* Security: 1 col */
-  .security-grid { grid-template-columns: 1fr; gap: 12px; }
+      /* Features: 1 col */
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
 
-  /* Hero button: full width */
-  .hero-btn { width: 100%; justify-content: center; }
+      /* Steps: vertical list, left-aligned */
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
 
-  /* CTA button: full width */
-  .cta-link-box { width: 100%; justify-content: center; }
+      .step {
+        text-align: left;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 0;
+      }
 
-  /* Smaller section padding */
-  .sec, .sec-alt > .inner { padding-top: 40px; padding-bottom: 40px; }
-}
-</style>
+      .step-num {
+        margin: 0;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        box-shadow: 0 0 0 4px var(--white), 0 0 0 5px var(--emerald-lt);
+      }
+
+      .step .step-content {
+        min-width: 0;
+      }
+
+      /* Security: 1 col */
+      .security-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* Hero button: full width */
+      .hero-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* CTA button: full width */
+      .cta-link-box {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Smaller section padding */
+      .sec,
+      .sec-alt>.inner {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ── NAVBAR ── -->
-<nav>
-  <span class="nav-brand">BarFin</span>
-  <ul class="nav-links">
-    <li><a href="#masalah">Masalah</a></li>
-    <li><a href="#fitur">Fitur</a></li>
-    <li><a href="#cara-kerja">Cara Kerja</a></li>
-    <li><a href="#investasi">Investasi</a></li>
-    <li><a href="#keamanan">Keamanan</a></li>
-    <li><a href="#progres">Progres</a></li>
-    <li><a href="https://bar-fin.vercel.app/" target="_blank" class="nav-cta">Coba Sekarang →</a></li>
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <span class="nav-brand">BarFin</span>
+    <ul class="nav-links">
+      <li><a href="#masalah">Masalah</a></li>
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
+      <li><a href="#investasi">Investasi</a></li>
+      <li><a href="#keamanan">Keamanan</a></li>
+      <li><a href="#progres">Progres</a></li>
+      <li><a href="https://bar-fin.vercel.app/" target="_blank" class="nav-cta">Coba Sekarang →</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <ul class="nav-drawer" id="navDrawer">
+    <li><a href="#masalah" onclick="closeDrawer()">Masalah</a></li>
+    <li><a href="#fitur" onclick="closeDrawer()">Fitur</a></li>
+    <li><a href="#cara-kerja" onclick="closeDrawer()">Cara Kerja</a></li>
+    <li><a href="#investasi" onclick="closeDrawer()">Investasi</a></li>
+    <li><a href="#keamanan" onclick="closeDrawer()">Keamanan</a></li>
+    <li><a href="#progres" onclick="closeDrawer()">Progres</a></li>
+    <li><a href="https://bar-fin.vercel.app/" target="_blank" class="drawer-cta">🌐 Coba Sekarang</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Buka menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<ul class="nav-drawer" id="navDrawer">
-  <li><a href="#masalah"    onclick="closeDrawer()">Masalah</a></li>
-  <li><a href="#fitur"      onclick="closeDrawer()">Fitur</a></li>
-  <li><a href="#cara-kerja" onclick="closeDrawer()">Cara Kerja</a></li>
-  <li><a href="#investasi"  onclick="closeDrawer()">Investasi</a></li>
-  <li><a href="#keamanan"   onclick="closeDrawer()">Keamanan</a></li>
-  <li><a href="#progres"    onclick="closeDrawer()">Progres</a></li>
-  <li><a href="https://bar-fin.vercel.app/" target="_blank" class="drawer-cta">🌐 Coba Sekarang</a></li>
-</ul>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-tag">Web App · Keuangan Syariah</div>
-  <h1>Kelola Uang dengan Cara<br>yang <span>Halal &amp; Berkah</span></h1>
-  <p class="hero-sub">BarFin membantu kamu mencatat keuangan, menghitung zakat, dan merencanakan investasi — semuanya sesuai prinsip Islam. Gratis. Tanpa instalasi.</p>
-  <div class="hero-stats">
-    <div class="stat-item"><div class="stat-num">6+</div><div class="stat-lbl">Fitur Unggulan</div></div>
-    <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">Profil Risiko Investasi</div></div>
-    <div class="stat-item"><div class="stat-num">OJK</div><div class="stat-lbl">Referensi DES Resmi</div></div>
-    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Berbasis Syariah</div></div>
-  </div>
-  <a href="https://bar-fin.vercel.app/" target="_blank" class="hero-btn">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="15" y1="8" x2="1" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    Buka BarFin — bar-fin.vercel.app
-  </a>
-</div>
-
-<!-- ── MASALAH ── -->
-<div id="masalah" class="sec-alt">
-<div class="inner">
-  <div class="section-label">Latar Belakang</div>
-  <div class="divider"></div>
-  <h2 class="section-title">Masalah yang Kami Selesaikan</h2>
-  <p class="section-lead">Jutaan orang Indonesia masih kesulitan mengelola keuangan sesuai prinsip Islam. BarFin lahir dari empat masalah nyata yang kami lihat di masyarakat.</p>
-  <div class="problems-grid">
-    <div class="problem-card"><span class="problem-icon">💸</span><h3>Jeratan Pinjol &amp; Riba</h3><p>Banyak orang terjebak utang berbunga tinggi akibat kurangnya perencanaan keuangan dan minimnya literasi finansial syariah.</p></div>
-    <div class="problem-card"><span class="problem-icon">🛍️</span><h3>Gaya Hidup Boros (Israf)</h3><p>Kemudahan fitur Pay Later dan promo diskon mendorong pengeluaran impulsif yang menguras tabungan tanpa disadari.</p></div>
-    <div class="problem-card"><span class="problem-icon">❓</span><h3>Ketidaktahuan Hukum Finansial Islam</h3><p>Banyak yang ingin berinvestasi, namun tidak tahu cara menghindari gharar (ketidakpastian berlebihan) dan instrumen non-syariah.</p></div>
-    <div class="problem-card"><span class="problem-icon">🧮</span><h3>Kesulitan Menghitung Zakat</h3><p>Masyarakat sering bingung membedakan zakat penghasilan dan zakat harta (maal), sehingga kewajiban ini sering terlewat.</p></div>
-  </div>
-  <div class="solution-box">
-    <div>
-      <h3>BarFin sebagai Solusi</h3>
-      <p>BarFin adalah asisten keuangan personal yang membantu penggunanya mencapai kebebasan finansial tanpa melanggar prinsip syariah. Dirancang ringan, langsung berjalan di browser, tanpa instalasi. Rekomendasi investasi merujuk pada <strong>Daftar Efek Syariah (DES) resmi dari OJK</strong>, sehingga kehalalan instrumen terjamin.</p>
-    </div>
-    <div class="solution-badge">
-      <span class="badge-num">DES</span>
-      <span class="badge-lbl">Referensi OJK<br>Resmi</span>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- ── FITUR ── -->
-<section id="fitur" class="sec">
-  <div class="section-label">Fitur Produk</div>
-  <div class="divider"></div>
-  <h2 class="section-title">6 Fitur Unggulan</h2>
-  <p class="section-lead">Setiap fitur dirancang untuk menjawab kebutuhan nyata pengelolaan keuangan berbasis Islam — dari ibadah maaliyah hingga perencanaan masa depan.</p>
-  <div class="features-grid">
-    <div class="feat-card"><span class="feat-icon">🕌</span><h3>Kalkulator Zakat Otomatis</h3><p>Hitung Zakat Maal dan Zakat Penghasilan secara terpisah dan akurat menggunakan patokan nisab emas terkini. Tidak perlu hitung manual lagi.</p></div>
-    <div class="feat-card"><span class="feat-icon">🏷️</span><h3>Pelabelan Transaksi Syariah</h3><p>Beri label Halal, Syubhat, atau Haram pada setiap transaksi. Fitur ini membantu pengguna sadar dan reflektif ke mana uang mereka mengalir.</p></div>
-    <div class="feat-card"><span class="feat-icon">🎯</span><h3>Goals Keuangan Islami</h3><p>Tetapkan target tabungan untuk tujuan mulia: dana Umroh, sedekah rutin, atau dana darurat — lengkap dengan progress tracker visual.</p></div>
-    <div class="feat-card"><span class="feat-icon">📊</span><h3>Laporan &amp; Analisis Keuangan</h3><p>Pantau kesehatan finansial lewat grafik interaktif pemasukan vs. pengeluaran secara harian, mingguan, dan bulanan.</p></div>
-    <div class="feat-card"><span class="feat-icon">📈</span><h3>Proyeksi Investasi Syariah</h3><p>Masukkan nominal dan durasi, lihat proyeksi pertumbuhan dalam 3 skenario berdasarkan rata-rata historis instrumen syariah. Disertai disclaimer DYOR transparan.</p></div>
-    <div class="feat-card"><span class="feat-icon">📚</span><h3>Edukasi Ekonomi Syariah</h3><p>Artikel pendek tentang bahaya riba, pentingnya sedekah, perbedaan bank syariah vs konvensional, dan cara berinvestasi sesuai syariat.</p></div>
-  </div>
-</section>
-
-<!-- ── CARA KERJA ── -->
-<div id="cara-kerja" class="sec-alt">
-<div class="inner">
-  <div class="section-label">User Flow</div>
-  <div class="divider"></div>
-  <h2 class="section-title">Cara Kerja BarFin</h2>
-  <p class="section-lead">Empat langkah sederhana — dari pertama buka aplikasi hingga keuanganmu tertata rapi sesuai syariat.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <h3>Daftar &amp; Setup</h3>
-        <p>Masukkan nama dan harga emas terkini sebagai patokan nisab zakat. Tidak ada form panjang — langsung mulai.</p>
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-tag">Web App · Keuangan Syariah</div>
+    <h1>Kelola Uang dengan Cara<br>yang <span>Halal &amp; Berkah</span></h1>
+    <p class="hero-sub">BarFin membantu kamu mencatat keuangan, menghitung zakat, dan merencanakan investasi — semuanya
+      sesuai prinsip Islam. Gratis. Tanpa instalasi.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-lbl">Fitur Unggulan</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">Profil Risiko Investasi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">OJK</div>
+        <div class="stat-lbl">Referensi DES Resmi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">Berbasis Syariah</div>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <h3>Isi Kuis Profil Risiko</h3>
-        <p>Jawab beberapa pertanyaan singkat untuk mengetahui gaya investasimu: Konservatif, Moderat, atau Agresif.</p>
+    <a href="https://bar-fin.vercel.app/" target="_blank" class="hero-btn">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <line x1="15" y1="8" x2="1" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      Buka BarFin — bar-fin.vercel.app
+    </a>
+  </div>
+
+  <!-- ── MASALAH ── -->
+  <div id="masalah" class="sec-alt">
+    <div class="inner">
+      <div class="section-label">Latar Belakang</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Masalah yang Kami Selesaikan</h2>
+      <p class="section-lead">Jutaan orang Indonesia masih kesulitan mengelola keuangan sesuai prinsip Islam. BarFin
+        lahir dari empat masalah nyata yang kami lihat di masyarakat.</p>
+      <div class="problems-grid">
+        <div class="problem-card"><span class="problem-icon">💸</span>
+          <h3>Jeratan Pinjol &amp; Riba</h3>
+          <p>Banyak orang terjebak utang berbunga tinggi akibat kurangnya perencanaan keuangan dan minimnya literasi
+            finansial syariah.</p>
+        </div>
+        <div class="problem-card"><span class="problem-icon">🛍️</span>
+          <h3>Gaya Hidup Boros (Israf)</h3>
+          <p>Kemudahan fitur Pay Later dan promo diskon mendorong pengeluaran impulsif yang menguras tabungan tanpa
+            disadari.</p>
+        </div>
+        <div class="problem-card"><span class="problem-icon">❓</span>
+          <h3>Ketidaktahuan Hukum Finansial Islam</h3>
+          <p>Banyak yang ingin berinvestasi, namun tidak tahu cara menghindari gharar (ketidakpastian berlebihan) dan
+            instrumen non-syariah.</p>
+        </div>
+        <div class="problem-card"><span class="problem-icon">🧮</span>
+          <h3>Kesulitan Menghitung Zakat</h3>
+          <p>Masyarakat sering bingung membedakan zakat penghasilan dan zakat harta (maal), sehingga kewajiban ini
+            sering terlewat.</p>
+        </div>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <h3>Catat Transaksi Harian</h3>
-        <p>Tambahkan pemasukan dan pengeluaran, beri label Halal/Syubhat/Haram, dan pantau arus kas secara real-time.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-content">
-        <h3>Pantau &amp; Raih Berkah</h3>
-        <p>Lihat grafik keuanganmu, cek progress goals, baca edukasi, dan hitung zakat kapan pun kamu mau.</p>
+      <div class="solution-box">
+        <div>
+          <h3>BarFin sebagai Solusi</h3>
+          <p>BarFin adalah asisten keuangan personal yang membantu penggunanya mencapai kebebasan finansial tanpa
+            melanggar prinsip syariah. Dirancang ringan, langsung berjalan di browser, tanpa instalasi. Rekomendasi
+            investasi merujuk pada <strong>Daftar Efek Syariah (DES) resmi dari OJK</strong>, sehingga kehalalan
+            instrumen terjamin.</p>
+        </div>
+        <div class="solution-badge">
+          <span class="badge-num">DES</span>
+          <span class="badge-lbl">Referensi OJK<br>Resmi</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
-<!-- ── INVESTASI ── -->
-<section id="investasi" class="sec">
-  <div class="section-label">Fitur Unggulan</div>
-  <div class="divider"></div>
-  <h2 class="section-title">Proyeksi Investasi Syariah</h2>
-  <p class="section-lead">Dirancang transparan, edukatif, dan bebas dari janji keuntungan pasti — sesuai larangan syariah terhadap gharar.</p>
-  <div class="inv-layout">
-    <div class="inv-desc">
-      <p>Pengguna menggeser <strong>slider</strong> interaktif untuk menentukan nominal investasi (Rp 100.000 – Rp 50.000.000) dan durasi waktu (1 – 30 tahun). Sistem menghitung proyeksi secara real-time menggunakan <strong>rumus Compound Return</strong> dalam tiga skenario.</p>
-      <p>Grafik garis interaktif memvisualisasikan ketiga skenario tersebut. Semakin lama durasinya, semakin nyata efek compounding-nya. Di bawah grafik terdapat kartu ringkasan: modal awal, estimasi keuntungan, dan total estimasi nilai.</p>
-      <div class="dyor-box">
-        <strong>⚠️ Disclaimer DYOR</strong><br>
-        Proyeksi bersifat ilustratif berdasarkan rata-rata data historis. Return masa lalu tidak menjamin hasil masa depan. Investasi selalu mengandung risiko kehilangan modal. Ini bukan saran investasi profesional.<br><br>
-        <em>Do Your Own Research (DYOR) sebelum berinvestasi.</em>
-      </div>
-    </div>
-    <div>
-      <div class="scenario-table-wrap">
-        <table class="scenario-table">
-          <thead><tr><th>Profil</th><th>Return Est.</th><th>Instrumen</th></tr></thead>
-          <tbody>
-            <tr><td><span class="badge-pill pill-green">Konservatif</span></td><td>4 – 6% p.a.</td><td>Deposito Syariah, Sukuk Ritel</td></tr>
-            <tr><td><span class="badge-pill pill-yellow">Moderat</span></td><td>7 – 10% p.a.</td><td>Reksa Dana Syariah, ORI Syariah</td></tr>
-            <tr><td><span class="badge-pill pill-red">Agresif</span></td><td>11 – 15% p.a.</td><td>Saham Syariah (DES OJK)</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="font-size:.8rem;color:var(--slate-lt);margin-top:10px;line-height:1.5;">Rekomendasi instrumen syariah merujuk langsung pada <strong>Daftar Efek Syariah (DES)</strong> resmi yang diterbitkan oleh Otoritas Jasa Keuangan (OJK).</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── KEAMANAN ── -->
-<div id="keamanan" class="sec-alt">
-<div class="inner">
-  <div class="section-label">Trust &amp; Security</div>
-  <div class="divider"></div>
-  <h2 class="section-title">Keamanan &amp; Kepercayaan Data</h2>
-  <p class="section-lead">Kami membangun BarFin dengan standar keamanan yang serius — karena data keuangan adalah amanah.</p>
-  <div class="security-grid">
-    <div class="sec-card"><span class="sec-icon">🔐</span><div><h3>Google OAuth Login</h3><p>Autentikasi dilakukan langsung via akun Google. BarFin tidak pernah menyimpan password pengguna di server manapun.</p></div></div>
-    <div class="sec-card"><span class="sec-icon">🛡️</span><div><h3>Row Level Security (RLS)</h3><p>Setiap baris data di Supabase dilindungi policy yang memastikan hanya pemilik data yang bisa membaca, menulis, atau menghapus datanya sendiri.</p></div></div>
-    <div class="sec-card"><span class="sec-icon">☁️</span><div><h3>Cloud Database — Supabase</h3><p>Data tersimpan di PostgreSQL cloud. Tidak akan hilang meski ganti HP atau browser. Dapat diakses dari perangkat manapun setelah login.</p></div></div>
-    <div class="sec-card"><span class="sec-icon">🧹</span><div><h3>Anti-XSS &amp; Input Sanitasi</h3><p>Semua input pengguna disanitasi sebelum dirender. Tidak ada eksekusi script berbahaya dari kolom input manapun di BarFin.</p></div></div>
-  </div>
-</div>
-</div>
-
-<!-- ── ROADMAP ── -->
-<section id="roadmap" class="sec">
-  <div class="section-label">Rencana Pengembangan</div>
-  <div class="divider"></div>
-  <h2 class="section-title">Roadmap BarFin</h2>
-  <p class="section-lead">BarFin bukan hanya proyek sekali jalan. Ini adalah fondasi dari ekosistem keuangan syariah digital yang kami bangun secara bertahap.</p>
-  <div class="roadmap">
-    <div class="phase-card done">
-      <div class="phase-badge badge-done">✅ Selesai</div>
-      <h3>Fase 1 — MVP</h3>
-      <ul>
-        <li>Web app open-access tanpa instalasi</li>
-        <li>Login Google + Supabase cloud storage</li>
-        <li>Pencatatan keuangan &amp; pelabelan syariah</li>
-        <li>Kalkulator zakat otomatis</li>
-        <li>Proyeksi investasi 3 skenario</li>
-        <li>Modul edukasi ekonomi Islam</li>
-      </ul>
-    </div>
-    <div class="phase-card next">
-      <div class="phase-badge badge-next">🔄 Direncanakan</div>
-      <h3>Fase 2 — Skalabilitas</h3>
-      <ul>
-        <li>Notifikasi pengingat zakat &amp; goals</li>
-        <li>Mobile-first PWA (installable)</li>
-        <li>API harga saham syariah real-time</li>
-        <li>Sistem multi-user yang lebih robust</li>
-        <li>Dashboard analitik lanjutan</li>
-      </ul>
-    </div>
-    <div class="phase-card future">
-      <div class="phase-badge badge-future">🔮 Visi Jangka Panjang</div>
-      <h3>Fase 3 — Ekosistem</h3>
-      <ul>
-        <li>Integrasi rekening bank syariah</li>
-        <li>Forum komunitas diskusi syariah</li>
-        <li>Sertifikasi MUI untuk platform</li>
-        <li>Monetisasi halal (fitur premium)</li>
-        <li>Ekspansi ke pasar ASEAN Muslim</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROGRES TUGAS ── -->
-<section id="progres" class="progress-section">
-  <div class="progress-inner">
-    <div class="section-label">Status Pengerjaan</div>
+  <!-- ── FITUR ── -->
+  <section id="fitur" class="sec">
+    <div class="section-label">Fitur Produk</div>
     <div class="divider"></div>
-    <h2 class="section-title">Progres Tugas BarFin</h2>
-    <p class="section-lead">Visualisasi real-time capaian setiap fase pengembangan — dari MVP yang sudah live hingga rencana masa depan ekosistem syariah digital.</p>
-
-    <div class="progress-grid">
-
-      <!-- Fase 1 -->
-      <div class="donut-card">
-        <div class="donut-wrap">
-          <svg viewBox="0 0 130 130">
-            <circle class="donut-track" cx="65" cy="65" r="54"/>
-            <circle class="donut-fill" id="ring1" cx="65" cy="65" r="54"
-              stroke="#059669"
-              stroke-dasharray="339.3"
-              stroke-dashoffset="339.3"/>
-          </svg>
-          <div class="donut-center">
-            <span class="donut-pct" id="pct1">0<span class="donut-pct-sym">%</span></span>
-          </div>
-        </div>
-        <h3>Fase 1 — MVP</h3>
-        <p>Web app, autentikasi, zakat, proyeksi investasi &amp; edukasi sudah live di Vercel.</p>
-        <div class="donut-tasks">
-          <span class="task-chip chip-done">✓ Web App</span>
-          <span class="task-chip chip-done">✓ Google Login</span>
-          <span class="task-chip chip-done">✓ Kalkulator Zakat</span>
-          <span class="task-chip chip-done">✓ Proyeksi Investasi</span>
-          <span class="task-chip chip-done">✓ Edukasi Syariah</span>
-          <span class="task-chip chip-done">✓ Labeling Transaksi</span>
-        </div>
+    <h2 class="section-title">6 Fitur Unggulan</h2>
+    <p class="section-lead">Setiap fitur dirancang untuk menjawab kebutuhan nyata pengelolaan keuangan berbasis Islam —
+      dari ibadah maaliyah hingga perencanaan masa depan.</p>
+    <div class="features-grid">
+      <div class="feat-card"><span class="feat-icon">🕌</span>
+        <h3>Kalkulator Zakat Otomatis</h3>
+        <p>Hitung Zakat Maal dan Zakat Penghasilan secara terpisah dan akurat menggunakan patokan nisab emas terkini.
+          Tidak perlu hitung manual lagi.</p>
       </div>
-
-      <!-- Fase 2 -->
-      <div class="donut-card">
-        <div class="donut-wrap">
-          <svg viewBox="0 0 130 130">
-            <circle class="donut-track" cx="65" cy="65" r="54"/>
-            <circle class="donut-fill" id="ring2" cx="65" cy="65" r="54"
-              stroke="#3b82f6"
-              stroke-dasharray="339.3"
-              stroke-dashoffset="339.3"/>
-          </svg>
-          <div class="donut-center">
-            <span class="donut-pct" id="pct2">0<span class="donut-pct-sym">%</span></span>
-          </div>
-        </div>
-        <h3>Fase 2 — Skalabilitas</h3>
-        <p>Notifikasi, PWA installable, API saham real-time &amp; dashboard analitik lanjutan.</p>
-        <div class="donut-tasks">
-          <span class="task-chip chip-done">✓ Notifikasi Zakat</span>
-          <span class="task-chip chip-done">✓ PWA Installable</span>
-          <span class="task-chip chip-done">✓ API Saham Real-time</span>
-          <span class="task-chip chip-done">✓ Multi-user Robust</span>
-          <span class="task-chip chip-done">✓ Dashboard Analitik</span>
-        </div>
+      <div class="feat-card"><span class="feat-icon">🏷️</span>
+        <h3>Pelabelan Transaksi Syariah</h3>
+        <p>Beri label Halal, Syubhat, atau Haram pada setiap transaksi. Fitur ini membantu pengguna sadar dan reflektif
+          ke mana uang mereka mengalir.</p>
       </div>
-
-      <!-- Fase 3 -->
-      <div class="donut-card">
-        <div class="donut-wrap">
-          <svg viewBox="0 0 130 130">
-            <circle class="donut-track" cx="65" cy="65" r="54"/>
-            <circle class="donut-fill" id="ring3" cx="65" cy="65" r="54"
-              stroke="#a855f7"
-              stroke-dasharray="339.3"
-              stroke-dashoffset="339.3"/>
-          </svg>
-          <div class="donut-center">
-            <span class="donut-pct" id="pct3">0<span class="donut-pct-sym">%</span></span>
-          </div>
-        </div>
-        <h3>Fase 3 — Ekosistem</h3>
-        <p>Integrasi rekening bank syariah, forum komunitas &amp; sertifikasi MUI.</p>
-        <div class="donut-tasks">
-          <span class="task-chip chip-todo">○ Integrasi Bank Syariah</span>
-          <span class="task-chip chip-todo">○ Forum Komunitas</span>
-          <span class="task-chip chip-todo">○ Sertifikasi MUI</span>
-          <span class="task-chip chip-todo">○ Fitur Premium Halal</span>
-          <span class="task-chip chip-todo">○ Ekspansi ASEAN</span>
-        </div>
+      <div class="feat-card"><span class="feat-icon">🎯</span>
+        <h3>Goals Keuangan Islami</h3>
+        <p>Tetapkan target tabungan untuk tujuan mulia: dana Umroh, sedekah rutin, atau dana darurat — lengkap dengan
+          progress tracker visual.</p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📊</span>
+        <h3>Laporan &amp; Analisis Keuangan</h3>
+        <p>Pantau kesehatan finansial lewat grafik interaktif pemasukan vs. pengeluaran secara harian, mingguan, dan
+          bulanan.</p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📈</span>
+        <h3>Proyeksi Investasi Syariah</h3>
+        <p>Masukkan nominal dan durasi, lihat proyeksi pertumbuhan dalam 3 skenario berdasarkan rata-rata historis
+          instrumen syariah. Disertai disclaimer DYOR transparan.</p>
+      </div>
+      <div class="feat-card"><span class="feat-icon">📚</span>
+        <h3>Edukasi Ekonomi Syariah</h3>
+        <p>Artikel pendek tentang bahaya riba, pentingnya sedekah, perbedaan bank syariah vs konvensional, dan cara
+          berinvestasi sesuai syariat.</p>
       </div>
     </div>
+  </section>
 
-    <!-- Overall Progress Bar -->
-    <div class="overall-progress">
-      <h3>📊 Total Progres Keseluruhan</h3>
-      <p>Dihitung berdasarkan jumlah task selesai dari total seluruh fase pengembangan.</p>
-
-      <div class="progress-bar-label">
-        <span>Fase 1 — MVP (6/6 task)</span>
-        <span id="bar-lbl-1">100%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill" id="bar1" style="background: linear-gradient(90deg, #059669, #6ee7b7);"></div>
-      </div>
-
-      <div class="progress-bar-label">
-        <span>Fase 2 — Skalabilitas (5/5 task selesai)</span>
-        <span id="bar-lbl-2">100%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill" id="bar2" style="background: linear-gradient(90deg, #1d4ed8, #93c5fd);"></div>
-      </div>
-
-      <div class="progress-bar-label">
-        <span>Fase 3 — Ekosistem (0/5 task)</span>
-        <span id="bar-lbl-3">0%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill" id="bar3" style="background: linear-gradient(90deg, #7c3aed, #c4b5fd);"></div>
-      </div>
-
-      <div class="overall-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#6ee7b7"></div> Selesai</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#93c5fd"></div> Sedang Dikerjakan</div>
-        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,.2)"></div> Belum Dimulai</div>
+  <!-- ── CARA KERJA ── -->
+  <div id="cara-kerja" class="sec-alt">
+    <div class="inner">
+      <div class="section-label">User Flow</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Cara Kerja BarFin</h2>
+      <p class="section-lead">Empat langkah sederhana — dari pertama buka aplikasi hingga keuanganmu tertata rapi sesuai
+        syariat.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Daftar &amp; Setup</h3>
+            <p>Masukkan nama dan harga emas terkini sebagai patokan nisab zakat. Tidak ada form panjang — langsung
+              mulai.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Isi Kuis Profil Risiko</h3>
+            <p>Jawab beberapa pertanyaan singkat untuk mengetahui gaya investasimu: Konservatif, Moderat, atau Agresif.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Catat Transaksi Harian</h3>
+            <p>Tambahkan pemasukan dan pengeluaran, beri label Halal/Syubhat/Haram, dan pantau arus kas secara
+              real-time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Pantau &amp; Raih Berkah</h3>
+            <p>Lihat grafik keuanganmu, cek progress goals, baca edukasi, dan hitung zakat kapan pun kamu mau.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ── CTA ── -->
-<div class="cta-section">
-  <h2>Siap Mengelola Keuangan<br>dengan Cara yang Berkah?</h2>
-  <p>Tidak perlu instal apapun. Buka langsung dari HP atau laptop kamu, login dengan Google, dan mulai perjalanan finansial syariahmu hari ini.</p>
-  <a href="https://bar-fin.vercel.app/" target="_blank" class="cta-link-box">
-    <span class="cta-link-icon">🌐</span>
-    <span class="cta-link-text">
-      <span>Buka Aplikasi BarFin</span>
-      <span>bar-fin.vercel.app</span>
-    </span>
-  </a>
-  <br>
-  <p class="cta-note">Gratis · Tanpa instalasi · Data aman di cloud</p>
-</div>
+  <!-- ── INVESTASI ── -->
+  <section id="investasi" class="sec">
+    <div class="section-label">Fitur Unggulan</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Proyeksi Investasi Syariah</h2>
+    <p class="section-lead">Dirancang transparan, edukatif, dan bebas dari janji keuntungan pasti — sesuai larangan
+      syariah terhadap gharar.</p>
+    <div class="inv-layout">
+      <div class="inv-desc">
+        <p>Pengguna menggeser <strong>slider</strong> interaktif untuk menentukan nominal investasi (Rp 100.000 – Rp
+          50.000.000) dan durasi waktu (1 – 30 tahun). Sistem menghitung proyeksi secara real-time menggunakan
+          <strong>rumus Compound Return</strong> dalam tiga skenario.</p>
+        <p>Grafik garis interaktif memvisualisasikan ketiga skenario tersebut. Semakin lama durasinya, semakin nyata
+          efek compounding-nya. Di bawah grafik terdapat kartu ringkasan: modal awal, estimasi keuntungan, dan total
+          estimasi nilai.</p>
+        <div class="dyor-box">
+          <strong>⚠️ Disclaimer DYOR</strong><br>
+          Proyeksi bersifat ilustratif berdasarkan rata-rata data historis. Return masa lalu tidak menjamin hasil masa
+          depan. Investasi selalu mengandung risiko kehilangan modal. Ini bukan saran investasi profesional.<br><br>
+          <em>Do Your Own Research (DYOR) sebelum berinvestasi.</em>
+        </div>
+      </div>
+      <div>
+        <div class="scenario-table-wrap">
+          <table class="scenario-table">
+            <thead>
+              <tr>
+                <th>Profil</th>
+                <th>Return Est.</th>
+                <th>Instrumen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill pill-green">Konservatif</span></td>
+                <td>4 – 6% p.a.</td>
+                <td>Deposito Syariah, Sukuk Ritel</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill pill-yellow">Moderat</span></td>
+                <td>7 – 10% p.a.</td>
+                <td>Reksa Dana Syariah, ORI Syariah</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill pill-red">Agresif</span></td>
+                <td>11 – 15% p.a.</td>
+                <td>Saham Syariah (DES OJK)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.8rem;color:var(--slate-lt);margin-top:10px;line-height:1.5;">Rekomendasi instrumen syariah
+          merujuk langsung pada <strong>Daftar Efek Syariah (DES)</strong> resmi yang diterbitkan oleh Otoritas Jasa
+          Keuangan (OJK).</p>
+      </div>
+    </div>
+  </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <p>Dibuat dengan semangat <strong>teknologi untuk peradaban Islam</strong> &nbsp;·&nbsp; <strong>BarFin Team</strong> &nbsp;·&nbsp; 2025</p>
-</footer>
+  <!-- ── KEAMANAN ── -->
+  <div id="keamanan" class="sec-alt">
+    <div class="inner">
+      <div class="section-label">Trust &amp; Security</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Keamanan &amp; Kepercayaan Data</h2>
+      <p class="section-lead">Kami membangun BarFin dengan standar keamanan yang serius — karena data keuangan adalah
+        amanah.</p>
+      <div class="security-grid">
+        <div class="sec-card"><span class="sec-icon">🔐</span>
+          <div>
+            <h3>Google OAuth Login</h3>
+            <p>Autentikasi dilakukan langsung via akun Google. BarFin tidak pernah menyimpan password pengguna di server
+              manapun.</p>
+          </div>
+        </div>
+        <div class="sec-card"><span class="sec-icon">🛡️</span>
+          <div>
+            <h3>Row Level Security (RLS)</h3>
+            <p>Setiap baris data di Supabase dilindungi policy yang memastikan hanya pemilik data yang bisa membaca,
+              menulis, atau menghapus datanya sendiri.</p>
+          </div>
+        </div>
+        <div class="sec-card"><span class="sec-icon">☁️</span>
+          <div>
+            <h3>Cloud Database — Supabase</h3>
+            <p>Data tersimpan di PostgreSQL cloud. Tidak akan hilang meski ganti HP atau browser. Dapat diakses dari
+              perangkat manapun setelah login.</p>
+          </div>
+        </div>
+        <div class="sec-card"><span class="sec-icon">🧹</span>
+          <div>
+            <h3>Anti-XSS &amp; Input Sanitasi</h3>
+            <p>Semua input pengguna disanitasi sebelum dirender. Tidak ada eksekusi script berbahaya dari kolom input
+              manapun di BarFin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const drawer    = document.getElementById('navDrawer');
+  <!-- ── ROADMAP ── -->
+  <section id="roadmap" class="sec">
+    <div class="section-label">Rencana Pengembangan</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Roadmap BarFin</h2>
+    <p class="section-lead">BarFin bukan hanya proyek sekali jalan. Ini adalah fondasi dari ekosistem keuangan syariah
+      digital yang kami bangun secara bertahap.</p>
+    <div class="roadmap">
+      <div class="phase-card done">
+        <div class="phase-badge badge-done">✅ Selesai</div>
+        <h3>Fase 1 — MVP</h3>
+        <ul>
+          <li>Web app open-access tanpa instalasi</li>
+          <li>Login Google + Supabase cloud storage</li>
+          <li>Pencatatan keuangan &amp; pelabelan syariah</li>
+          <li>Kalkulator zakat otomatis</li>
+          <li>Proyeksi investasi 3 skenario</li>
+          <li>Modul edukasi ekonomi Islam</li>
+        </ul>
+      </div>
+      <div class="phase-card next">
+        <div class="phase-badge badge-next">🔄 Direncanakan</div>
+        <h3>Fase 2 — Skalabilitas</h3>
+        <ul>
+          <li>Notifikasi pengingat zakat &amp; goals</li>
+          <li>Mobile-first PWA (installable)</li>
+          <li>API harga saham syariah real-time</li>
+          <li>Sistem multi-user yang lebih robust</li>
+          <li>Dashboard analitik lanjutan</li>
+        </ul>
+      </div>
+      <div class="phase-card future">
+        <div class="phase-badge badge-future">🔮 Visi Jangka Panjang</div>
+        <h3>Fase 3 — Ekosistem</h3>
+        <ul>
+          <li>Integrasi rekening bank syariah</li>
+          <li>Forum komunitas diskusi syariah</li>
+          <li>Sertifikasi MUI untuk platform</li>
+          <li>Monetisasi halal (fitur premium)</li>
+          <li>Ekspansi ke pasar ASEAN Muslim</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  hamburger.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  <!-- ── PROGRES TUGAS ── -->
+  <section id="progres" class="progress-section">
+    <div class="progress-inner">
+      <div class="section-label">Status Pengerjaan</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Progres Tugas BarFin</h2>
+      <p class="section-lead">Visualisasi real-time capaian setiap fase pengembangan — dari MVP yang sudah live hingga
+        rencana masa depan ekosistem syariah digital.</p>
 
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    hamburger.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+      <div class="progress-grid">
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) closeDrawer();
-  });
+        <!-- Fase 1 -->
+        <div class="donut-card">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 130 130">
+              <circle class="donut-track" cx="65" cy="65" r="54" />
+              <circle class="donut-fill" id="ring1" cx="65" cy="65" r="54" stroke="#059669" stroke-dasharray="339.3"
+                stroke-dashoffset="339.3" />
+            </svg>
+            <div class="donut-center">
+              <span class="donut-pct" id="pct1">0<span class="donut-pct-sym">%</span></span>
+            </div>
+          </div>
+          <h3>Fase 1 — MVP</h3>
+          <p>Web app, autentikasi, zakat, proyeksi investasi &amp; edukasi sudah live di Vercel.</p>
+          <div class="donut-tasks">
+            <span class="task-chip chip-done">✓ Web App</span>
+            <span class="task-chip chip-done">✓ Google Login</span>
+            <span class="task-chip chip-done">✓ Kalkulator Zakat</span>
+            <span class="task-chip chip-done">✓ Proyeksi Investasi</span>
+            <span class="task-chip chip-done">✓ Edukasi Syariah</span>
+            <span class="task-chip chip-done">✓ Labeling Transaksi</span>
+          </div>
+        </div>
 
-  /* ── DONUT CHART ANIMATION ── */
-  const CIRCUMFERENCE = 2 * Math.PI * 54; // r=54 → ≈339.3
+        <!-- Fase 2 -->
+        <div class="donut-card">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 130 130">
+              <circle class="donut-track" cx="65" cy="65" r="54" />
+              <circle class="donut-fill" id="ring2" cx="65" cy="65" r="54" stroke="#3b82f6" stroke-dasharray="339.3"
+                stroke-dashoffset="339.3" />
+            </svg>
+            <div class="donut-center">
+              <span class="donut-pct" id="pct2">0<span class="donut-pct-sym">%</span></span>
+            </div>
+          </div>
+          <h3>Fase 2 — Skalabilitas</h3>
+          <p>Notifikasi, PWA installable, API saham real-time &amp; dashboard analitik lanjutan.</p>
+          <div class="donut-tasks">
+            <span class="task-chip chip-done">✓ Notifikasi Zakat</span>
+            <span class="task-chip chip-done">✓ PWA Installable</span>
+            <span class="task-chip chip-done">✓ Dashboard Analitik</span>
+            <span class="task-chip chip-todo">○ API Saham Real-time</span>
+            <span class="task-chip chip-todo">○ Multi-user Robust</span>
+          </div>
+        </div>
 
-  const phases = [
-    { ring: 'ring1', pct: 'pct1', bar: 'bar1', value: 100 },
-    { ring: 'ring2', pct: 'pct2', bar: 'bar2', value: 100 },
-    { ring: 'ring3', pct: 'pct3', bar: 'bar3', value: 0   },
-  ];
+        <!-- Fase 3 -->
+        <div class="donut-card">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 130 130">
+              <circle class="donut-track" cx="65" cy="65" r="54" />
+              <circle class="donut-fill" id="ring3" cx="65" cy="65" r="54" stroke="#a855f7" stroke-dasharray="339.3"
+                stroke-dashoffset="339.3" />
+            </svg>
+            <div class="donut-center">
+              <span class="donut-pct" id="pct3">0<span class="donut-pct-sym">%</span></span>
+            </div>
+          </div>
+          <h3>Fase 3 — Ekosistem</h3>
+          <p>Integrasi rekening bank syariah, forum komunitas &amp; sertifikasi MUI.</p>
+          <div class="donut-tasks">
+            <span class="task-chip chip-todo">○ Integrasi Bank Syariah</span>
+            <span class="task-chip chip-todo">○ Forum Komunitas</span>
+            <span class="task-chip chip-todo">○ Sertifikasi MUI</span>
+            <span class="task-chip chip-todo">○ Fitur Premium Halal</span>
+            <span class="task-chip chip-todo">○ Ekspansi ASEAN</span>
+          </div>
+        </div>
+      </div>
 
-  function animateCounter(el, target, duration) {
-    const start = performance.now();
-    function tick(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-      // preserve the % symbol span
-      el.innerHTML = current + '<span class="donut-pct-sym">%</span>';
-      if (progress < 1) requestAnimationFrame(tick);
+      <!-- Overall Progress Bar -->
+      <div class="overall-progress">
+        <h3>📊 Total Progres Keseluruhan</h3>
+        <p>Dihitung berdasarkan jumlah task selesai dari total seluruh fase pengembangan.</p>
+
+        <div class="progress-bar-label">
+          <span>Fase 1 — MVP (6/6 task)</span>
+          <span id="bar-lbl-1">100%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar1" style="background: linear-gradient(90deg, #059669, #6ee7b7);"></div>
+        </div>
+
+        <div class="progress-bar-label">
+          <span>Fase 2 — Skalabilitas (3/5 task selesai)</span>
+          <span id="bar-lbl-2">60%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar2" style="background: linear-gradient(90deg, #1d4ed8, #93c5fd);"></div>
+        </div>
+
+        <div class="progress-bar-label">
+          <span>Fase 3 — Ekosistem (0/5 task)</span>
+          <span id="bar-lbl-3">0%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar3" style="background: linear-gradient(90deg, #7c3aed, #c4b5fd);"></div>
+        </div>
+
+        <div class="overall-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#6ee7b7"></div> Selesai
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#93c5fd"></div> Sedang Dikerjakan
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:rgba(255,255,255,.2)"></div> Belum Dimulai
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="cta-section">
+    <h2>Siap Mengelola Keuangan<br>dengan Cara yang Berkah?</h2>
+    <p>Tidak perlu instal apapun. Buka langsung dari HP atau laptop kamu, login dengan Google, dan mulai perjalanan
+      finansial syariahmu hari ini.</p>
+    <a href="https://bar-fin.vercel.app/" target="_blank" class="cta-link-box">
+      <span class="cta-link-icon">🌐</span>
+      <span class="cta-link-text">
+        <span>Buka Aplikasi BarFin</span>
+        <span>bar-fin.vercel.app</span>
+      </span>
+    </a>
+    <br>
+    <p class="cta-note">Gratis · Tanpa instalasi · Data aman di cloud</p>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>Dibuat dengan semangat <strong>teknologi untuk peradaban Islam</strong> &nbsp;·&nbsp; <strong>BarFin
+        Team</strong> &nbsp;·&nbsp; 2025</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('navDrawer');
+
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
     }
-    requestAnimationFrame(tick);
-  }
 
-  let animated = false;
-  const progressSection = document.getElementById('progres');
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeDrawer();
+    });
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !animated) {
-      animated = true;
-      phases.forEach(({ ring, pct, bar, value }) => {
-        // Donut
-        const ringEl = document.getElementById(ring);
-        const offset = CIRCUMFERENCE - (value / 100) * CIRCUMFERENCE;
-        ringEl.style.strokeDashoffset = offset;
+    /* ── DONUT CHART ANIMATION ── */
+    const CIRCUMFERENCE = 2 * Math.PI * 54; // r=54 → ≈339.3
 
-        // Counter
-        const pctEl = document.getElementById(pct);
-        animateCounter(pctEl, value, 1400);
+    const phases = [
+      { ring: 'ring1', pct: 'pct1', bar: 'bar1', value: 100 },
+      { ring: 'ring2', pct: 'pct2', bar: 'bar2', value: 100 },
+      { ring: 'ring3', pct: 'pct3', bar: 'bar3', value: 0 },
+    ];
 
-        // Bar
-        const barEl = document.getElementById(bar);
-        barEl.style.width = value + '%';
-      });
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        // preserve the % symbol span
+        el.innerHTML = current + '<span class="donut-pct-sym">%</span>';
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
     }
-  }, { threshold: 0.2 });
 
-  observer.observe(progressSection);
-</script>
+    let animated = false;
+    const progressSection = document.getElementById('progres');
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !animated) {
+        animated = true;
+        phases.forEach(({ ring, pct, bar, value }) => {
+          // Donut
+          const ringEl = document.getElementById(ring);
+          const offset = CIRCUMFERENCE - (value / 100) * CIRCUMFERENCE;
+          ringEl.style.strokeDashoffset = offset;
+
+          // Counter
+          const pctEl = document.getElementById(pct);
+          animateCounter(pctEl, value, 1400);
+
+          // Bar
+          const barEl = document.getElementById(bar);
+          barEl.style.width = value + '%';
+        });
+      }
+    }, { threshold: 0.2 });
+
+    observer.observe(progressSection);
+  </script>
 </body>
+
 </html>
