@@ -334,6 +334,143 @@ nav {
 }
 .phase-card li::before { content: '·'; color: var(--emerald); font-weight: 700; flex-shrink: 0; }
 
+/* ── PROGRESS ────────────────────────────────────────────────────────────── */
+.progress-section { background: var(--slate); padding: var(--section-py) var(--pad-x); }
+.progress-inner { max-width: var(--max-w); margin: 0 auto; }
+.progress-section .section-label { color: #6ee7b7; }
+.progress-section .section-title { color: var(--white); }
+.progress-section .section-lead  { color: rgba(255,255,255,.55); }
+.progress-section .divider { background: linear-gradient(90deg, #6ee7b7, var(--emerald)); }
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.donut-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px);
+  text-align: center;
+  transition: background .25s, transform .25s;
+  position: relative;
+  overflow: hidden;
+}
+.donut-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(110,231,183,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.donut-card:hover {
+  background: rgba(255,255,255,.08);
+  transform: translateY(-4px);
+}
+
+.donut-wrap {
+  position: relative;
+  width: 130px; height: 130px;
+  margin: 0 auto 20px;
+}
+.donut-wrap svg { width: 130px; height: 130px; transform: rotate(-90deg); }
+.donut-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 12; }
+.donut-fill  { fill: none; stroke-width: 12; stroke-linecap: round;
+  transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1); }
+
+.donut-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.donut-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem; line-height: 1;
+  color: var(--white); font-weight: 700;
+}
+.donut-pct-sym { font-size: 1rem; opacity: .7; }
+
+.donut-card h3 {
+  font-size: clamp(.88rem, 2vw, 1rem);
+  font-weight: 600; color: var(--white);
+  margin-bottom: 8px;
+}
+.donut-card p {
+  font-size: clamp(.76rem, 1.6vw, .84rem);
+  color: rgba(255,255,255,.45);
+  line-height: 1.6;
+}
+.donut-tasks {
+  margin-top: 14px;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+}
+.task-chip {
+  font-size: .68rem; font-weight: 600;
+  padding: 3px 9px; border-radius: 100px;
+  letter-spacing: .02em;
+}
+.chip-done   { background: rgba(110,231,183,.15); color: #6ee7b7; border: 1px solid rgba(110,231,183,.3); }
+.chip-wip    { background: rgba(96,165,250,.15);  color: #93c5fd; border: 1px solid rgba(96,165,250,.3); }
+.chip-todo   { background: rgba(255,255,255,.06); color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.12); }
+
+/* Overall bar */
+.overall-progress {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: clamp(22px, 4vw, 36px) clamp(20px, 4vw, 40px);
+}
+.overall-progress h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--white); margin-bottom: 6px;
+}
+.overall-progress > p {
+  font-size: clamp(.8rem, 1.8vw, .9rem);
+  color: rgba(255,255,255,.4); margin-bottom: 24px;
+}
+.progress-bar-label {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+}
+.progress-bar-label span:first-child {
+  font-size: .82rem; color: rgba(255,255,255,.65); font-weight: 500;
+}
+.progress-bar-label span:last-child {
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: #6ee7b7; font-weight: 500;
+}
+.bar-track {
+  height: 10px; background: rgba(255,255,255,.08);
+  border-radius: 100px; overflow: hidden; margin-bottom: 16px;
+}
+.bar-fill {
+  height: 100%; border-radius: 100px;
+  transition: width 1.4s cubic-bezier(.4,0,.2,1);
+  width: 0;
+}
+
+.overall-legend {
+  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: .78rem; color: rgba(255,255,255,.5);
+}
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .progress-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 480px) {
+  .progress-grid { grid-template-columns: 1fr; }
+}
+
 /* ── CTA ─────────────────────────────────────────────────────────────────── */
 .cta-section {
   background: linear-gradient(135deg, var(--emerald-xdk), var(--emerald-dk));
@@ -465,6 +602,7 @@ footer strong { color: rgba(255,255,255,.6); }
     <li><a href="#cara-kerja">Cara Kerja</a></li>
     <li><a href="#investasi">Investasi</a></li>
     <li><a href="#keamanan">Keamanan</a></li>
+    <li><a href="#progres">Progres</a></li>
     <li><a href="https://bar-fin.vercel.app/" target="_blank" class="nav-cta">Coba Sekarang →</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Buka menu">
@@ -477,6 +615,7 @@ footer strong { color: rgba(255,255,255,.6); }
   <li><a href="#cara-kerja" onclick="closeDrawer()">Cara Kerja</a></li>
   <li><a href="#investasi"  onclick="closeDrawer()">Investasi</a></li>
   <li><a href="#keamanan"   onclick="closeDrawer()">Keamanan</a></li>
+  <li><a href="#progres"    onclick="closeDrawer()">Progres</a></li>
   <li><a href="https://bar-fin.vercel.app/" target="_blank" class="drawer-cta">🌐 Coba Sekarang</a></li>
 </ul>
 
@@ -674,6 +813,131 @@ footer strong { color: rgba(255,255,255,.6); }
   </div>
 </section>
 
+<!-- ── PROGRES TUGAS ── -->
+<section id="progres" class="progress-section">
+  <div class="progress-inner">
+    <div class="section-label">Status Pengerjaan</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Progres Tugas BarFin</h2>
+    <p class="section-lead">Visualisasi real-time capaian setiap fase pengembangan — dari MVP yang sudah live hingga rencana masa depan ekosistem syariah digital.</p>
+
+    <div class="progress-grid">
+
+      <!-- Fase 1 -->
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 130 130">
+            <circle class="donut-track" cx="65" cy="65" r="54"/>
+            <circle class="donut-fill" id="ring1" cx="65" cy="65" r="54"
+              stroke="#059669"
+              stroke-dasharray="339.3"
+              stroke-dashoffset="339.3"/>
+          </svg>
+          <div class="donut-center">
+            <span class="donut-pct" id="pct1">0<span class="donut-pct-sym">%</span></span>
+          </div>
+        </div>
+        <h3>Fase 1 — MVP</h3>
+        <p>Web app, autentikasi, zakat, proyeksi investasi &amp; edukasi sudah live di Vercel.</p>
+        <div class="donut-tasks">
+          <span class="task-chip chip-done">✓ Web App</span>
+          <span class="task-chip chip-done">✓ Google Login</span>
+          <span class="task-chip chip-done">✓ Kalkulator Zakat</span>
+          <span class="task-chip chip-done">✓ Proyeksi Investasi</span>
+          <span class="task-chip chip-done">✓ Edukasi Syariah</span>
+          <span class="task-chip chip-done">✓ Labeling Transaksi</span>
+        </div>
+      </div>
+
+      <!-- Fase 2 -->
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 130 130">
+            <circle class="donut-track" cx="65" cy="65" r="54"/>
+            <circle class="donut-fill" id="ring2" cx="65" cy="65" r="54"
+              stroke="#3b82f6"
+              stroke-dasharray="339.3"
+              stroke-dashoffset="339.3"/>
+          </svg>
+          <div class="donut-center">
+            <span class="donut-pct" id="pct2">0<span class="donut-pct-sym">%</span></span>
+          </div>
+        </div>
+        <h3>Fase 2 — Skalabilitas</h3>
+        <p>Notifikasi, PWA installable, API saham real-time &amp; dashboard analitik lanjutan.</p>
+        <div class="donut-tasks">
+          <span class="task-chip chip-wip">⟳ Notifikasi Zakat</span>
+          <span class="task-chip chip-wip">⟳ PWA Installable</span>
+          <span class="task-chip chip-todo">○ API Saham Real-time</span>
+          <span class="task-chip chip-todo">○ Multi-user Robust</span>
+          <span class="task-chip chip-todo">○ Dashboard Analitik</span>
+        </div>
+      </div>
+
+      <!-- Fase 3 -->
+      <div class="donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 130 130">
+            <circle class="donut-track" cx="65" cy="65" r="54"/>
+            <circle class="donut-fill" id="ring3" cx="65" cy="65" r="54"
+              stroke="#a855f7"
+              stroke-dasharray="339.3"
+              stroke-dashoffset="339.3"/>
+          </svg>
+          <div class="donut-center">
+            <span class="donut-pct" id="pct3">0<span class="donut-pct-sym">%</span></span>
+          </div>
+        </div>
+        <h3>Fase 3 — Ekosistem</h3>
+        <p>Integrasi rekening bank syariah, forum komunitas &amp; sertifikasi MUI.</p>
+        <div class="donut-tasks">
+          <span class="task-chip chip-todo">○ Integrasi Bank Syariah</span>
+          <span class="task-chip chip-todo">○ Forum Komunitas</span>
+          <span class="task-chip chip-todo">○ Sertifikasi MUI</span>
+          <span class="task-chip chip-todo">○ Fitur Premium Halal</span>
+          <span class="task-chip chip-todo">○ Ekspansi ASEAN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overall Progress Bar -->
+    <div class="overall-progress">
+      <h3>📊 Total Progres Keseluruhan</h3>
+      <p>Dihitung berdasarkan jumlah task selesai dari total seluruh fase pengembangan.</p>
+
+      <div class="progress-bar-label">
+        <span>Fase 1 — MVP (6/6 task)</span>
+        <span id="bar-lbl-1">100%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="bar1" style="background: linear-gradient(90deg, #059669, #6ee7b7);"></div>
+      </div>
+
+      <div class="progress-bar-label">
+        <span>Fase 2 — Skalabilitas (2/5 task dalam proses)</span>
+        <span id="bar-lbl-2">40%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="bar2" style="background: linear-gradient(90deg, #1d4ed8, #93c5fd);"></div>
+      </div>
+
+      <div class="progress-bar-label">
+        <span>Fase 3 — Ekosistem (0/5 task)</span>
+        <span id="bar-lbl-3">0%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="bar3" style="background: linear-gradient(90deg, #7c3aed, #c4b5fd);"></div>
+      </div>
+
+      <div class="overall-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#6ee7b7"></div> Selesai</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#93c5fd"></div> Sedang Dikerjakan</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,.2)"></div> Belum Dimulai</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA ── -->
 <div class="cta-section">
   <h2>Siap Mengelola Keuangan<br>dengan Cara yang Berkah?</h2>
@@ -713,6 +977,55 @@ footer strong { color: rgba(255,255,255,.6); }
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) closeDrawer();
   });
+
+  /* ── DONUT CHART ANIMATION ── */
+  const CIRCUMFERENCE = 2 * Math.PI * 54; // r=54 → ≈339.3
+
+  const phases = [
+    { ring: 'ring1', pct: 'pct1', bar: 'bar1', value: 100 },
+    { ring: 'ring2', pct: 'pct2', bar: 'bar2', value: 40  },
+    { ring: 'ring3', pct: 'pct3', bar: 'bar3', value: 0   },
+  ];
+
+  function animateCounter(el, target, duration) {
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      // preserve the % symbol span
+      el.innerHTML = current + '<span class="donut-pct-sym">%</span>';
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  let animated = false;
+  const progressSection = document.getElementById('progres');
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;
+      phases.forEach(({ ring, pct, bar, value }) => {
+        // Donut
+        const ringEl = document.getElementById(ring);
+        const offset = CIRCUMFERENCE - (value / 100) * CIRCUMFERENCE;
+        ringEl.style.strokeDashoffset = offset;
+
+        // Counter
+        const pctEl = document.getElementById(pct);
+        animateCounter(pctEl, value, 1400);
+
+        // Bar
+        const barEl = document.getElementById(bar);
+        barEl.style.width = value + '%';
+      });
+    }
+  }, { threshold: 0.2 });
+
+  observer.observe(progressSection);
 </script>
 </body>
 </html>
